@@ -31,7 +31,7 @@ public class Category extends Model {
     public static Map<String, String> options() {
         LinkedHashMap<String, String> options = new LinkedHashMap<String, String>();
         for(Category category: find.all()) {
-            options.put(category.name, category.id.toString());
+            options.put(category.id.toString(), category.name);
         }
         return options;
     }

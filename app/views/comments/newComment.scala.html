@@ -3,7 +3,7 @@
 @main("Welcome to Play 2.1") {
   <h1>New Comment</h1>
   @helper.form(action = routes.CommentsController.create, 'class -> "form-group") {
-    @helper.select(form("category"), options = Category.options().toSeq)
+    @helper.select(form("category.id"), options = Category.options().toSeq)
     @helper.inputText(form("content"), 'class -> "form-control")
     <input type="submit" class="btn btn-default" value="Create">
   }
