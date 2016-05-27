@@ -25,7 +25,7 @@ public class CategoriesApiController extends Application {
         String name = json.get("name").asText();
         Category category = new Category(name);
         category.save();
-        return ok();
+        return ok(Json.toJson(category));
     }
 
     public static Result update(Long id) {
@@ -36,13 +36,13 @@ public class CategoriesApiController extends Application {
         Category category = Category.find.byId(id);
         category.name = name;
         category.update(id);
-        return ok();
+        return ok(Json.toJson(category));
     }
 
     public static Result delete(Long id) {
         setHeader();
         Category category = Category.find.byId(id);
         category.delete();
-        return ok();
+        return ok(Json.toJson(category));
     }
 }
