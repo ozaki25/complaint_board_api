@@ -12,7 +12,6 @@ public class CategoriesController extends Controller {
     final static Form<Category> categoryForm = form(Category.class);
 
     public static Result index() {
-        System.out.println("index");
         return ok(index.render(Category.find.all()));
     }
 

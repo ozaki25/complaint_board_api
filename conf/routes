@@ -17,5 +17,8 @@ POST    /categories-dev            controllers.CategoriesController.create()
 POST    /categories-dev/:id/update controllers.CategoriesController.update(id: Long)
 POST    /categories-dev/:id/delete controllers.CategoriesController.delete(id: Long)
 
+OPTIONS /                          controllers.Application.options(path: String ?= "")
+OPTIONS /*path                     controllers.Application.options(path: String)
+
 # Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.at(path="/public", file)
+GET     /assets/*file              controllers.Assets.at(path="/public", file)
