@@ -2,36 +2,47 @@ package controllers;
 
 import play.*;
 import play.mvc.*;
-
-import play.libs.Json;
-import org.codehaus.jackson.node.ObjectNode;
-
-import java.util.List;
-import java.util.ArrayList;
+import play.data.Form;
+import static play.data.Form.*;
 
 import models.Category;
-import views.html.*;
+import views.html.categories.*;
 
 public class CategoriesController extends Controller {
+    final static Form<Category> categoryForm = form(Category.class);
+
     public static Result index() {
-        response().setHeader("Access-Control-Allow-Origin", "*");
+        System.out.println("index");
+        return ok(index.render(Category.find.all()));
+    }
 
-        List<Category> categoryList = Category.find.all();
-        System.out.println(Json.toJson(categoryList));
+    public static Result newCategory() {
+        return ok(newCategory.render(categoryForm));
+    }
 
-        return ok(Json.toJson(categoryList));
+    public static Result edit(Long id) {
+        Category category = Category.find.byId(id);
+        return ok(edit.render(categoryForm.fill(category)));
     }
 
     public static Result create() {
-        return ok();
+        Category category = categoryForm.bindFromRequest().get();
+        category.save();
+        return redirect(routes.CategoriesController.index());
     }
 
     public static Result update(Long id) {
-        return ok();
+        Form<Category> form = categoryForm.bindFromRequest();
+        Category category = Category.find.byId(id);
+        category = form.get();
+        category.update(id);
+        return redirect(routes.CategoriesController.index());
     }
 
     public static Result delete(Long id) {
-        return ok();
+        Category category = Category.find.byId(id);
+        category.delete();
+        return redirect(routes.CategoriesController.index());
     }
 
     public static Result setUp() {

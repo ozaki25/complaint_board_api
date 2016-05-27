@@ -2,13 +2,20 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-# Home page
-GET     /categories                controllers.CategoriesController.index()
-POST    /categories                controllers.CategoriesController.create()
-PATCH   /categories/:id            controllers.CategoriesController.update(id: Long)
-DELETE  /categories/:id            controllers.CategoriesController.delete(id: Long)
+# Api
+GET     /categories                controllers.CategoriesApiController.index()
+POST    /categories                controllers.CategoriesApiController.create()
+PATCH   /categories/:id            controllers.CategoriesApiController.update(id: Long)
+DELETE  /categories/:id            controllers.CategoriesApiController.delete(id: Long)
 
-GET     /categories/setup          controllers.CategoriesController.setUp()
+# 開発検証用
+GET     /categories-dev            controllers.CategoriesController.index()
+GET     /categories-dev/setup      controllers.CategoriesController.setUp()
+GET     /categories-dev/new        controllers.CategoriesController.newCategory()
+GET     /categories-dev/:id/edit   controllers.CategoriesController.edit(id: Long)
+POST    /categories-dev            controllers.CategoriesController.create()
+POST    /categories-dev/:id/update controllers.CategoriesController.update(id: Long)
+POST    /categories-dev/:id/delete controllers.CategoriesController.delete(id: Long)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

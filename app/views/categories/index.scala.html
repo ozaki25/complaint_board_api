@@ -1,0 +1,32 @@
+@(categories: List[Category])
+
+@main("Welcome to Play 2.1") {
+  <h1>Category List</h1>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <td>ID</td>
+        <td>Name</td>
+        <td></td>
+        <td></td>
+      </tr>
+    </thead>
+    <tbody>
+      @for(category <- categories) {
+        <tr>
+          <td>@category.id</td>
+          <td>@category.name</td>
+          <td>
+            <a class="btn btn-default btn-xs" href="@routes.CategoriesController.edit(category.id)">Edit</a>
+          </td>
+          <td>
+            <form action="@routes.CategoriesController.delete(category.id)" method="POST">
+              <button class="btn btn-default btn-xs">Delete</button>
+            </form>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+  <a class="btn btn-default" href="@routes.CategoriesController.newCategory">New Category</a>
+}
