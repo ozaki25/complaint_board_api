@@ -3,19 +3,34 @@
 # ~~~~
 
 # Api
+## Categories
 GET     /categories                controllers.CategoriesApiController.index()
 POST    /categories                controllers.CategoriesApiController.create()
 PATCH   /categories/:id            controllers.CategoriesApiController.update(id: Long)
 DELETE  /categories/:id            controllers.CategoriesApiController.delete(id: Long)
 
+## Comments
+GET     /comments                controllers.CommentsApiController.index()
+POST    /comments                controllers.CommentsApiController.create()
+PATCH   /comments/:id            controllers.CommentsApiController.update(id: Long)
+DELETE  /comments/:id            controllers.CommentsApiController.delete(id: Long)
+
 # 開発検証用
+## Categories
 GET     /categories-dev            controllers.CategoriesController.index()
-GET     /categories-dev/setup      controllers.CategoriesController.setUp()
 GET     /categories-dev/new        controllers.CategoriesController.newCategory()
 GET     /categories-dev/:id/edit   controllers.CategoriesController.edit(id: Long)
 POST    /categories-dev            controllers.CategoriesController.create()
 POST    /categories-dev/:id/update controllers.CategoriesController.update(id: Long)
 POST    /categories-dev/:id/delete controllers.CategoriesController.delete(id: Long)
+
+## Comments
+GET     /comments-dev            controllers.CommentsController.index()
+GET     /comments-dev/new        controllers.CommentsController.newComment()
+GET     /comments-dev/:id/edit   controllers.CommentsController.edit(id: Long)
+POST    /comments-dev            controllers.CommentsController.create()
+POST    /comments-dev/:id/update controllers.CommentsController.update(id: Long)
+POST    /comments-dev/:id/delete controllers.CommentsController.delete(id: Long)
 
 OPTIONS /                          controllers.Application.options(path: String ?= "")
 OPTIONS /*path                     controllers.Application.options(path: String)

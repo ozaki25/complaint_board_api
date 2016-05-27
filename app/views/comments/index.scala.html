@@ -1,0 +1,34 @@
+@(comments: List[Comment])
+
+@main("Welcome to Play 2.1") {
+  <h1>Comment List</h1>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <td>ID</td>
+        <td>Category</td>
+        <td>Content</td>
+        <td></td>
+        <td></td>
+      </tr>
+    </thead>
+    <tbody>
+      @for(comment <- comments) {
+        <tr>
+          <td>@comment.id</td>
+          <td>@comment.category.name</td>
+          <td>@comment.content</td>
+          <td>
+            <a class="btn btn-default btn-xs" href="@routes.CommentsController.edit(comment.id)">Edit</a>
+          </td>
+          <td>
+            <form action="@routes.CommentsController.delete(comment.id)" method="POST">
+              <button class="btn btn-default btn-xs">Delete</button>
+            </form>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+  <a class="btn btn-default" href="@routes.CommentsController.newComment">New Comment</a>
+}

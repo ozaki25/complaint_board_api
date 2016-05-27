@@ -43,6 +43,7 @@ public class CategoriesApiController extends Application {
         setHeader();
         Category category = Category.find.byId(id);
         category.delete();
+        System.out.println(Json.toJson(category));
         return ok(Json.toJson(category));
     }
 }

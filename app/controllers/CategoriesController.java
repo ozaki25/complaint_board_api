@@ -43,15 +43,4 @@ public class CategoriesController extends Controller {
         category.delete();
         return redirect(routes.CategoriesController.index());
     }
-
-    public static Result setUp() {
-        Category category1 = new Category("楽しくない仕事");
-        category1.save();
-        Category category2 = new Category("いらいらする仕事");
-        category2.save();
-        Category category3 = new Category("つまんない仕事");
-        category3.save();
-
-        return redirect(routes.CategoriesController.index());
-    }
 }
