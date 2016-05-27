@@ -5,7 +5,6 @@ import play.mvc.*;
 
 public class Application extends Controller {
     public static Result options(String path) {
-        System.out.println("options");
         setHeader();
         return ok();
     }

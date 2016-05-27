@@ -15,7 +15,6 @@ public class CategoriesApiController extends Application {
         setHeader();
         List<Category> categoryList = Category.find.all();
         System.out.println(Json.toJson(categoryList));
-
         return ok(Json.toJson(categoryList));
     }
 
@@ -23,6 +22,9 @@ public class CategoriesApiController extends Application {
         setHeader();
         JsonNode json = request().body().asJson();
         System.out.println(json);
+        String name = json.get("name").asText();
+        Category category = new Category(name);
+        category.save();
         return ok();
     }
 
@@ -30,13 +32,17 @@ public class CategoriesApiController extends Application {
         setHeader();
         JsonNode json = request().body().asJson();
         System.out.println(json);
+        String name = json.get("name").asText();
+        Category category = Category.find.byId(id);
+        category.name = name;
+        category.update(id);
         return ok();
     }
 
     public static Result delete(Long id) {
         setHeader();
-        JsonNode json = request().body().asJson();
-        System.out.println(json);
+        Category category = Category.find.byId(id);
+        category.delete();
         return ok();
     }
 }
